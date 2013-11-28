@@ -115,6 +115,7 @@ int Sys_GetVideoRam( void ) {
 #else
 	unsigned int retSize = 64;
 
+#if NEILOGD_ALLOW_ATL
 	CComPtr<IWbemLocator> spLoc = NULL;
 	HRESULT hr = CoCreateInstance( CLSID_WbemLocator, 0, CLSCTX_SERVER, IID_IWbemLocator, ( LPVOID * ) &spLoc );
 	if ( hr != S_OK || spLoc == NULL ) {
@@ -158,6 +159,7 @@ int Sys_GetVideoRam( void ) {
 			}
 		}
 	}
+#endif // NEILOGD_ALLOW_ATL
 	return retSize;
 #endif
 }

@@ -58,8 +58,6 @@ If you have questions concerning this license or the applicable additional terms
 
 #else
 
-#include "../tools/comafx/StdAfx.h"
-
 #endif
 
 #include <winsock2.h>

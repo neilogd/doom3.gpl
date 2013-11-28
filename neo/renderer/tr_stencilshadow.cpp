@@ -929,7 +929,11 @@ static void R_CreateShadowVolumeInFrustum( const idRenderEntityLocal *ent,
 		// an equal number of back vertexes
 //		R_ProjectPointsToFarPlane( ent, light, farPlane, firstShadowVert, numShadowVerts );
 
+#if ID_ALLOW_TOOLS
 		opt = SuperOptimizeOccluders( shadowVerts, shadowIndexes + firstShadowIndex, numCapIndexes, farPlane, lightOrigin );
+#else
+		assert(0);
+#endif
 
 		// pull off the non-optimized data
 		numShadowIndexes = firstShadowIndex;
@@ -1388,7 +1392,9 @@ srfTriangles_t *R_CreateShadowVolume( const idRenderEntityLocal *ent,
 	}
 
 	if ( optimize == SG_OFFLINE ) {
+#if ID_ALLOW_TOOLS
 		CleanupOptimizedShadowTris( newTri );
+#endif
 	}
 
 	return newTri;

@@ -2335,6 +2335,7 @@ void idCommonLocal::InitCommands( void ) {
 	cmdSystem->AddCommand( "execMachineSpec", Com_ExecMachineSpec_f, CMD_FL_SYSTEM, "execs the appropriate config files and sets cvars based on com_machineSpec" );
 
 #if	!defined( ID_DEMO_BUILD ) && !defined( ID_DEDICATED )
+#if NEILOGD_ALLOW_AFC
 	// compilers
 	cmdSystem->AddCommand( "dmap", Dmap_f, CMD_FL_TOOL, "compiles a map", idCmdSystem::ArgCompletion_MapName );
 	cmdSystem->AddCommand( "renderbump", RenderBump_f, CMD_FL_TOOL, "renders a bump map", idCmdSystem::ArgCompletion_ModelName );
@@ -2343,6 +2344,7 @@ void idCommonLocal::InitCommands( void ) {
 	cmdSystem->AddCommand( "runAASDir", RunAASDir_f, CMD_FL_TOOL, "compiles AAS files for all maps in a folder", idCmdSystem::ArgCompletion_MapName );
 	cmdSystem->AddCommand( "runReach", RunReach_f, CMD_FL_TOOL, "calculates reachability for an AAS file", idCmdSystem::ArgCompletion_MapName );
 	cmdSystem->AddCommand( "roq", RoQFileEncode_f, CMD_FL_TOOL, "encodes a roq file" );
+#endif // NEILOGD_ALLOW_AFC
 #endif
 
 #ifdef ID_ALLOW_TOOLS
@@ -2667,7 +2669,11 @@ void idCommonLocal::LoadGameDLL( void ) {
 	gameImport.renderModelManager		= ::renderModelManager;
 	gameImport.uiManager				= ::uiManager;
 	gameImport.declManager				= ::declManager;
+#if NEILOGD_ALLOW_AFC
 	gameImport.AASFileManager			= ::AASFileManager;
+#else
+	gameImport.AASFileManager			= NULL;
+#endif // NEILOGD_ALLOW_AFC
 	gameImport.collisionModelManager	= ::collisionModelManager;
 
 	gameExport							= *GetGameAPI( &gameImport );
