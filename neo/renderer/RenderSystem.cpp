@@ -548,6 +548,13 @@ void idRenderSystemLocal::SetBackEndRenderer() {
 		if ( glConfig.allowARB2Path ) {
 			backEndRenderer = BE_ARB2;
 		}
+#if NEILOGD_OPENGL_ES2_SUPPORT
+		else if ( idStr::Icmp( r_renderer.GetString(), "es2" ) == 0 ) {
+		if ( glConfig.allowARB2Path ) {
+			backEndRenderer = BE_ES2;
+		}
+	}
+#endif
 	} else if ( idStr::Icmp( r_renderer.GetString(), "nv10" ) == 0 ) {
 		if ( glConfig.allowNV10Path ) {
 			backEndRenderer = BE_NV10;
@@ -565,6 +572,12 @@ void idRenderSystemLocal::SetBackEndRenderer() {
 	// fallback
 	if ( backEndRenderer == BE_BAD ) {
 		// choose the best
+#if NEILOGD_OPENGL_ES2_SUPPORT
+		if ( glConfig.allowES2Path ) {
+			backEndRenderer = BE_ES2;
+		}
+		else
+#endif
 		if ( glConfig.allowARB2Path ) {
 			backEndRenderer = BE_ARB2;
 		} else if ( glConfig.allowR200Path ) {
@@ -599,6 +612,11 @@ void idRenderSystemLocal::SetBackEndRenderer() {
 		break;
 	case BE_ARB2:
 		common->Printf( "using ARB2 renderSystem\n" );
+		backEndRendererHasVertexPrograms = true;
+		backEndRendererMaxLight = 999;
+		break;
+	case BE_ES2:
+		common->Printf( "using ES2 renderSystem\n" );
 		backEndRendererHasVertexPrograms = true;
 		backEndRendererMaxLight = 999;
 		break;

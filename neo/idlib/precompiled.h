@@ -33,6 +33,23 @@ If you have questions concerning this license or the applicable additional terms
 
 //-----------------------------------------------------
 
+/**
+ * Use SDL rather than native input/windowing.
+ */
+#define NEILOGD_SDL_BUILD						0
+
+/**
+ * Support OpenGL ES2 render backend.
+ */ 
+#define NEILOGD_OPENGL_ES2_SUPPORT				1
+
+/**
+ * Redefine standard string funs to idStr stuff.
+ */
+
+#define NEILOGD_REDEFINE_STD_STRING_FUNCS		0
+
+//-----------------------------------------------------
 #define ID_TIME_T time_t
 
 #ifdef _WIN32

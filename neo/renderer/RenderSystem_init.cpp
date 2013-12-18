@@ -692,6 +692,10 @@ void R_InitOpenGL( void ) {
 	R_R200_Init();
 	R_ARB2_Init();
 
+#if NEILOGD_OPENGL_ES2_SUPPORT
+	R_ES2_Init();
+#endif
+
 	cmdSystem->AddCommand( "reloadARBprograms", R_ReloadARBPrograms_f, CMD_FL_RENDERER, "reloads ARB programs" );
 	R_ReloadARBPrograms_f( idCmdArgs() );
 

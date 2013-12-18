@@ -2669,11 +2669,7 @@ void idCommonLocal::LoadGameDLL( void ) {
 	gameImport.renderModelManager		= ::renderModelManager;
 	gameImport.uiManager				= ::uiManager;
 	gameImport.declManager				= ::declManager;
-#if NEILOGD_ALLOW_AFC
 	gameImport.AASFileManager			= ::AASFileManager;
-#else
-	gameImport.AASFileManager			= NULL;
-#endif // NEILOGD_ALLOW_AFC
 	gameImport.collisionModelManager	= ::collisionModelManager;
 
 	gameExport							= *GetGameAPI( &gameImport );

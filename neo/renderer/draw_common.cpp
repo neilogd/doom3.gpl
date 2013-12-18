@@ -1701,6 +1701,11 @@ void	RB_STD_DrawView( void ) {
 	case BE_R200:
 		RB_R200_DrawInteractions();
 		break;
+#if NEILOGD_OPENGL_ES2_SUPPORT
+	case BE_ES2:
+		RB_ES2_DrawInteractions();
+		break;
+#endif
 	}
 
 	// disable stencil shadow test

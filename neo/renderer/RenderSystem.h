@@ -95,6 +95,10 @@ typedef struct glconfig_s {
 	bool				allowR200Path;
 	bool				allowARB2Path;
 
+#if NEILOGD_OPENGL_ES2_SUPPORT
+	bool				allowES2Path;
+#endif // NEILOGD_OPENGL_ES2_SUPPORT
+
 	bool				isInitialized;
 } glconfig_t;
 

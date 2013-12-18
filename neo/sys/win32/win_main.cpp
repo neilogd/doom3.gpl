@@ -152,6 +152,7 @@ const char* Sys_GetThreadName(int *index) {
 	return "main";
 }
 
+#if !NEILOGD_SDL_BUILD
 
 /*
 ==================
@@ -175,6 +176,8 @@ void Sys_LeaveCriticalSection( int index ) {
 	assert( index >= 0 && index < MAX_CRITICAL_SECTIONS );
 	LeaveCriticalSection( &win32.criticalSections[index] );
 }
+
+#endif // !NEILOGD_SDL_BUILD
 
 /*
 ==================
@@ -1362,6 +1365,8 @@ EXCEPTION_DISPOSITION __cdecl _except_handler( struct _EXCEPTION_RECORD *Excepti
 WinMain
 ==================
 */
+#if !NEILOGD_SDL_BUILD
+
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow ) {
 
 	const HCURSOR hcurSave = ::SetCursor( LoadCursor( 0, IDC_WAIT ) );
@@ -1504,6 +1509,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	// never gets here
 	return 0;
 }
+#endif // !NEILOGD_SDL_BUILD
 
 /*
 ====================
